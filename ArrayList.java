@@ -1,4 +1,4 @@
-public class ArrayList<E> {
+public class ArrayList<E> implements IArrayList<E> {
     private int Size;
     private float ExtensionFactor;
     private E[] Data;
@@ -131,6 +131,14 @@ public class ArrayList<E> {
         }
 
         return -1;
+    }
+
+    /**
+     * Defines a method that returns the number of elements in the ArrayList
+     * @return Returns the number of elements in the ArrayList
+     */
+    public int GetSize() {
+        return this.Size;
     }
 
     /**
