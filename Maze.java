@@ -1,5 +1,7 @@
 public class Maze {
+    // The Width and Height of the Maze
     private int Width, Height;
+    // The Maze itself as an array of integers
     private int[] Data;
 
     /**
