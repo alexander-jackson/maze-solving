@@ -39,6 +39,22 @@ public class Maze {
     }
 
     /**
+     * Defines a simple get method for the width of the maze
+     * @return The width of the maze
+     */
+    public int GetWidth() {
+        return this.Width;
+    }
+
+    /**
+     * Defines a simple get method for the height of the maze
+     * @return The height of the maze
+     */
+    public int GetHeight() {
+        return this.Height;
+    }
+
+    /**
      * Defines a method that displays the current content of the maze in numbers
      */
     public void Display() {
