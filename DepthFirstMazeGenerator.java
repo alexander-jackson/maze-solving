@@ -21,10 +21,80 @@ public class DepthFirstMazeGenerator implements IMazeGenerator {
      * @return Returns the Maze it created
      */
     public Maze GenerateMaze() {
+        // If the maze has already been generated, we need to reset it
+        if (this.Generated) this.M = new Maze(this.M.GetWidth(), this.M.GetHeight());
 
+        // We can now assume the maze is cleared to the state of a new maze
+        Coordinate Current = new Coordinate(1, 1);
+        // Set the starting point to be an open square
+        this.M.Set(Current, 1);
+        // Create a stack to enact the Depth First Traversal
+        Stack<Coordinate> Trace = new Stack<>();
+        // Push the starting coordinate to the stack
+        Trace.Push(Current);
+
+        // While we aren't at the beginning
+        while (!Trace.IsEmpty()) {
+            // Get the current options for the coordinate we are at
+            ArrayList<Coordinate> Options = GetValidOptions(Current);
+
+            // If there are no possible options
+            if (Options.GetSize() == 0) {
+                // Pop and go backwards
+                Current = Trace.Pop();
+            } else {
+                // Pick a random option
+                Coordinate Next = Options.Get((int) Math.floor(Math.random() * Options.GetSize()));
+                // Set the next coordinate as traversable
+                this.M.Set(Next, 1);
+                // Set the midpoint of the two coordinates to traversable
+                this.M.Set(Current.Midpoint(Next), 1);
+                // Push the current coordinate to the stack
+                Trace.Push(Current);
+                // Update the current node
+                Current = Next;
+            }
+        }
 
         this.Generated = true;
         return this.M;
+    }
+
+    /**
+     * Defines a method to get the valid coordinates to explore around a given coordinate
+     * @param  Input The coordinate you are currently at
+     * @return       Returns an ArrayList of Coordinates which are valid choices
+     */
+    public ArrayList<Coordinate> GetValidOptions(Coordinate Input) {
+        // Create a new ArrayList of Coordinates to track our options
+        ArrayList<Coordinate> Options = new ArrayList<>();
+        // Get the x and y of the Input coordinate
+        int ix = Input.GetX(), iy = Input.GetY();
+
+        // Iterate across the different x and y values
+        for (int i = ix - 2, j = iy - 2; i <= ix + 2 && j <= iy + 2; i += 4, j += 4) {
+            // If the coordinate is valid and it is currently not open, add it
+            // to the ArrayList of options
+            if (IsValidCoordinate(i, iy) && this.M.Get(i, iy) == 0) {
+                Options.Add(new Coordinate(i, iy));
+            }
+
+            if (IsValidCoordinate(ix, j) && this.M.Get(ix, j) == 0) {
+                Options.Add(new Coordinate(ix, j));
+            }
+        }
+
+        return Options;
+    }
+
+    /**
+     * Defines a method to check whether a Coordinate is a valid coordinate given the size of the Maze
+     * @param  x The x coordinate of the point
+     * @param  y The y coordinate of the point
+     * @return   Returns true if it is valid and false if it is not
+     */
+    public boolean IsValidCoordinate(int x, int y) {
+        return (0 <= x && x < this.M.GetWidth() && 0 <= y && y < this.M.GetHeight());
     }
 
     /**
