@@ -29,13 +29,33 @@ public class Maze {
     }
 
     /**
+     * Defines a simple Get method to index the Maze object and get the value of it
+     * using a Coordinate structure
+     * @param  C The coordinate being accessed
+     * @return   Returns the value at that coordinate
+     */
+    public int Get(Coordinate C) {
+        return this.Get(C.x, C.y);
+    }
+
+    /**
      * Defines a simple Set method to index the Maze object and set the value of it
-     * @param x The x coordinate being accessed
-     * @param y The y coordinate being accessed
+     * @param x The x coordinate being set
+     * @param y The y coordinate being set
      * @param v The value to set this coordinate to
      */
     public void Set(int x, int y, int v) {
         this.Data[x * this.Width + y] = v;
+    }
+
+    /**
+     * Defines a simple Set method to index the Maze object and set the value of it
+     * using a Coordinate structure
+     * @param C The coordinate being set
+     * @param v The value to set this coordinate to
+     */
+    public void Set(Coordinate C, int v) {
+        this.Set(C.x, C.y, v);
     }
 
     /**
