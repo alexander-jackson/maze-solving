@@ -44,9 +44,13 @@ public class Coordinate {
         this.y = y;
     }
 
+    public Coordinate Midpoint(Coordinate Input) {
+        return new Coordinate((this.x + Input.x) / 2, (this.y + Input.y) / 2);
+    }
+
     /**
      * Defines a toString method for the Coordinate class
-     * @return Returns a string format of the coordinate 
+     * @return Returns a string format of the coordinate
      */
     public String toString() {
         return String.format("(%d,%d)", x, y);
