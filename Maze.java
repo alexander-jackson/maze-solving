@@ -35,7 +35,7 @@ public class Maze {
      * @return   Returns the value at that coordinate
      */
     public int Get(Coordinate C) {
-        return this.Get(C.x, C.y);
+        return this.Get(C.GetX(), C.GetY());
     }
 
     /**
@@ -55,7 +55,7 @@ public class Maze {
      * @param v The value to set this coordinate to
      */
     public void Set(Coordinate C, int v) {
-        this.Set(C.x, C.y, v);
+        this.Set(C.GetX(), C.GetY(), v);
     }
 
     /**
