@@ -62,14 +62,18 @@ public class Node {
         return this.Parent;
     }
 
+    public void SetGCost(int GCost) {
+        this.GCost = GCost;
+    }
+
     /**
      * Defines a method to calculate the heuristic for the Node given
      * the Coordinate of the end
      * @param End The end point of the maze as a coordinate
      */
     public void CalculateHeuristic(Coordinate End) {
-        int dx = Math.abs(this.Location.GetX() - this.End.GetX());
-        int dy = Math.abs(this.Location.GetY() - this.End.GetY());
+        int dx = Math.abs(this.Location.GetX() - End.GetX());
+        int dy = Math.abs(this.Location.GetY() - End.GetY());
         this.HCost = 10 * (dx + dy) - 6 * Math.min(dx, dy);
     }
 
