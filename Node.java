@@ -97,6 +97,11 @@ public class Node {
         this.FCost = this.GCost + this.HCost;
     }
 
+    /**
+     * Defines an equals method to compare two Node objects for the same coordinate reference
+     * @param  O The Object to compare it to
+     * @return   Returns true if the nodes point to the same coordinate
+     */
     @Override
     public boolean equals(Object O) {
         if (O == this) return true;
