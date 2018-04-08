@@ -52,7 +52,23 @@ public class Coordinate {
      * Defines a toString method for the Coordinate class
      * @return Returns a string format of the coordinate
      */
+    @Override
     public String toString() {
         return String.format("(%d,%d)", x, y);
+    }
+
+    /**
+     * Defines an equals method for the Coordinate class to compare two coordinates
+     * @param  C The Coordinate to compare it to
+     * @return   Returns True if the coordinates are the same and false if not
+     */
+    @Override
+    public boolean equals(Object O) {
+        if (O == this) return true;
+        if (!(O instanceof Coordinate)) return false;
+
+        Coordinate C = (Coordinate) O;
+
+        return this.x == C.x && this.y == C.y;
     }
 }
