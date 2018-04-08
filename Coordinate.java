@@ -59,7 +59,7 @@ public class Coordinate {
 
     /**
      * Defines an equals method for the Coordinate class to compare two coordinates
-     * @param  C The Coordinate to compare it to
+     * @param  O The object to compare it to
      * @return   Returns True if the coordinates are the same and false if not
      */
     @Override
