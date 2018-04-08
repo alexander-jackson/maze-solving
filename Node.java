@@ -96,4 +96,13 @@ public class Node {
     public void CalculateFCost() {
         this.FCost = this.GCost + this.HCost;
     }
+
+    @Override
+    public boolean equals(Object O) {
+        if (O == this) return true;
+        if (!(O instanceof Node)) return false;
+
+        Node N = (Node) O;
+        return (this.Location.equals(N.GetLocation()));
+    }
 }
