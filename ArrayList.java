@@ -142,6 +142,14 @@ public class ArrayList<E> implements IArrayList<E> {
     }
 
     /**
+     * Defines a method used to check whether the ArrayList is empty or not
+     * @return Returns true if it is empty and false if it contains elements
+     */
+    public boolean IsEmpty() {
+        return this.Size == 0;
+    }
+
+    /**
      * Defines a method to display the elements of the array
      */
     public void Display() {
