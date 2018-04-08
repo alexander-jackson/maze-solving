@@ -62,6 +62,18 @@ public class Node {
         return this.Parent;
     }
 
+    /**
+     * Defines a Set method for the FCost variable
+     * @param FCost The value to set the FCost to
+     */
+    public void SetFCost(int FCost) {
+        this.FCost = FCost;
+    }
+
+    /**
+     * Defines a Set method for the GCost variable
+     * @param GCost The value to set the GCost to
+     */
     public void SetGCost(int GCost) {
         this.GCost = GCost;
     }
