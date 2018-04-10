@@ -76,6 +76,20 @@ public class Node {
      */
     public void SetGCost(int GCost) {
         this.GCost = GCost;
+        CalculateFCost();
+    }
+
+    /**
+     * Defines a method to make a deep copy of a node and return it
+     * @return Returns a copy of the current node with a different pointer
+     */
+    public Node Copy() {
+        Node CopyNode = new Node(this.Location);
+        CopyNode.FCost = this.FCost;
+        CopyNode.GCost = this.GCost;
+        CopyNode.HCost = this.HCost;
+        CopyNode.Parent = this.Parent;
+        return CopyNode;
     }
 
     /**
@@ -87,14 +101,7 @@ public class Node {
         int dx = Math.abs(this.Location.GetX() - End.GetX());
         int dy = Math.abs(this.Location.GetY() - End.GetY());
         this.HCost = 10 * (dx + dy) - 6 * Math.min(dx, dy);
-    }
-
-    /**
-     * Defines a simple method to set the FCost of the Node to the sum of the
-     * GCost and HCost values
-     */
-    public void CalculateFCost() {
-        this.FCost = this.GCost + this.HCost;
+        CalculateFCost();
     }
 
     /**
@@ -109,5 +116,13 @@ public class Node {
 
         Node N = (Node) O;
         return (this.Location.equals(N.GetLocation()));
+    }
+
+    /**
+    * Defines a simple method to set the FCost of the Node to the sum of the
+    * GCost and HCost values
+    */
+    private void CalculateFCost() {
+        this.FCost = this.GCost + this.HCost;
     }
 }
