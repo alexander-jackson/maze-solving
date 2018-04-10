@@ -133,6 +133,10 @@ public class ArrayList<E> implements IArrayList<E> {
         return -1;
     }
 
+    public boolean Contains(E Element) {
+        return (this.Find(Element) != -1);
+    }
+
     /**
      * Defines a method that returns the number of elements in the ArrayList
      * @return Returns the number of elements in the ArrayList
