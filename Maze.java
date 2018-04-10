@@ -75,6 +75,22 @@ public class Maze {
     }
 
     /**
+     * Defines a method used to copy the current maze into a new Maze object (deep copy)
+     * @return Returns a deep copy of the maze
+     */
+    public Maze Copy() {
+        Maze CopiedMaze = new Maze(this.Width, this.Height);
+
+        for (int x = 0; x < this.Width; x++) {
+            for (int y = 0; y < this.Height; y++) {
+                CopiedMaze.Set(x, y, this.Get(x, y));
+            }
+        }
+
+        return CopiedMaze;
+    }
+
+    /**
      * Defines a method that displays the current content of the maze in numbers
      */
     public void Display() {
