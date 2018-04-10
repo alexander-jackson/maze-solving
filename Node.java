@@ -80,6 +80,14 @@ public class Node {
     }
 
     /**
+     * Defines a simple Set method for the Parent variable
+     * @param Parent The Node to set Parent to
+     */
+    public void SetParent(Node Parent) {
+        this.Parent = Parent;
+    }
+
+    /**
      * Defines a method to make a deep copy of a node and return it
      * @return Returns a copy of the current node with a different pointer
      */
