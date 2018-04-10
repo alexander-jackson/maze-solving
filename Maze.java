@@ -105,12 +105,18 @@ public class Maze {
     /**
      * Defines a method that displays the current content of the Maze in a more readable fashion
      * Values of 0 are displayed as '-' and are a wall
-     * Any other value is displayed as an empty space
+     * Values of 1 are displayed as ' ' and are an empty space
+     * Values of 2 are displayed as '+' and are part of the path
      */
     public void PrettyDisplay() {
         for (int x = 0; x < this.Width; x++) {
             for (int y = 0; y < this.Height; y++) {
-                System.out.print((this.Get(x, y) == 0 ? '-' : ' ')  + " ");
+                char Output = '-';
+                switch (this.Get(x, y)) {
+                    case 1: Output = ' '; break;
+                    case 2: Output = '+'; break;
+                }
+                System.out.print(Output + " ");
             }
             System.out.print("\n");
         }
