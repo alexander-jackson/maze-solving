@@ -1,3 +1,7 @@
+import java.awt.image.BufferedImage;
+import java.io.File;
+import javax.imageio.ImageIO;
+
 public class Maze {
     // The Width and Height of the Maze
     private int Width, Height;
@@ -120,5 +124,31 @@ public class Maze {
             }
             System.out.print("\n");
         }
+    }
+
+    public void WriteToImage(String Filepath) {
+        try {
+            BufferedImage Image = new BufferedImage(this.Width, this.Height, BufferedImage.TYPE_INT_RGB);
+            File ToWrite = new File(Filepath);
+
+            for (int x = 0; x < this.Width; x++) {
+                for (int y = 0; y < this.Height; y++) {
+                    int RGB = ToRGB(0, 0, 0);
+                    switch (this.Get(x, y)) {
+                        case 1: RGB = ToRGB(255, 255, 255); break;
+                        case 2: RGB = ToRGB(0, 255, 0); break;
+                    }
+                    Image.setRGB(y, x, RGB);
+                }
+            }
+
+            ImageIO.write(Image, "png", ToWrite);
+        } catch(Exception e) {
+            e.printStackTrace();
+        }
+    }
+
+    private int ToRGB(int r, int g, int b) {
+        return (r << 16) | (g << 8) | b;
     }
 }
