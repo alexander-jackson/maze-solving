@@ -29,7 +29,7 @@ public class Maze {
      * @return   Returns the value at that coordinate
      */
     public int Get(int x, int y) {
-        return this.Data[x * this.Width + y];
+        return this.Data[x * this.Height + y];
     }
 
     /**
@@ -49,7 +49,7 @@ public class Maze {
      * @param v The value to set this coordinate to
      */
     public void Set(int x, int y, int v) {
-        this.Data[x * this.Width + y] = v;
+        this.Data[x * this.Height + y] = v;
     }
 
     /**
@@ -138,7 +138,7 @@ public class Maze {
                         case 1: RGB = ToRGB(255, 255, 255); break;
                         case 2: RGB = ToRGB(0, 255, 0); break;
                     }
-                    Image.setRGB(y, x, RGB);
+                    Image.setRGB(x, y, RGB);
                 }
             }
 
