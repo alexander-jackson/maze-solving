@@ -31,7 +31,7 @@ public class NodeMap {
      * @return   Returns the Node at that Coordinate
      */
     public Node Get(int x, int y) {
-        return this.Data[x * this.Width + y];
+        return this.Data[x * this.Height + y];
     }
 
     /**
@@ -50,6 +50,6 @@ public class NodeMap {
      * @param N The Value to set it to
      */
     public void Set(int x, int y, Node N) {
-        this.Data[x * this.Width + y] = N;
+        this.Data[x * this.Height + y] = N;
     }
 }
