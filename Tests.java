@@ -1,6 +1,6 @@
 public class Tests {
 
-    static final int Width = 70;
+    static final int Width = 200;
     static final int Height = 70;
 
     public static void main(String[] args) {
@@ -13,5 +13,6 @@ public class Tests {
         Coordinate End = new Coordinate(m.GetWidth() - 2, m.GetHeight() - 2);
         Maze Solved = ASMS.SolveMaze(Start, End);
         Solved.PrettyDisplay();
+        Solved.WriteToImage("Solved.png");
     }
 }
