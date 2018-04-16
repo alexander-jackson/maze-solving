@@ -3,11 +3,22 @@ public class AStarMazeSolver implements IMazeSolver {
     private NodeMap MazeMap;
     private ArrayList<Node> OpenList, ClosedList;
 
+    /**
+     * Defines a constructor for the AStarMazeSolver to initialise it
+     * @param ToSolve The Maze we are trying to solve
+     */
     public AStarMazeSolver(Maze ToSolve) {
         this.Original = ToSolve;
         this.Solved = this.Original.Copy();
     }
 
+    /**
+     * Defines the SolveMaze method as outlined in the IMazeSolver interface
+     * @param  Start The Start coordinate for the solve
+     * @param  End   The End coordinate for the solve
+     * @return       Returns a copy of the Maze with the necessary information from the solve so
+     *               it can be plotted
+     */
     public Maze SolveMaze(Coordinate Start, Coordinate End) {
         MapMaze(End);
         OpenList = new ArrayList<>();
@@ -75,6 +86,10 @@ public class AStarMazeSolver implements IMazeSolver {
         return this.Solved;
     }
 
+    /**
+     * Defines a method to map the maze into a NodeMap which can then be used for the A* Algorithm
+     * @param End The End coordinate for the solve
+     */
     private void MapMaze(Coordinate End) {
         MazeMap = new NodeMap(Original.GetWidth(), Original.GetHeight());
 
@@ -87,6 +102,10 @@ public class AStarMazeSolver implements IMazeSolver {
         }
     }
 
+    /**
+     * Defines a method to get the node with the lowest FCost in the Open list
+     * @return The Node with the lowest FCost
+     */
     private Node GetLowestFCost() {
         Node Lowest = new Node();
         Lowest.SetFCost(Integer.MAX_VALUE);
@@ -100,6 +119,13 @@ public class AStarMazeSolver implements IMazeSolver {
         return Lowest;
     }
 
+    /**
+     * Defines a method that gets the current valid neighbours for the current node, that is
+     * the nodes that are not in the closed list, not a wall and are within the bounds of the
+     * maze
+     * @param  Current The current node we are at
+     * @return         Returns an ArrayList of the valid nodes around the current one
+     */
     private ArrayList<Node> GetNeighbours(Node Current) {
         ArrayList<Node> Neighbours = new ArrayList<>();
         Coordinate CurrentCoordinate = Current.GetLocation();
@@ -117,12 +143,24 @@ public class AStarMazeSolver implements IMazeSolver {
         return Neighbours;
     }
 
+    /**
+     * Defines a method to check whether a given coordinate is a valid neighbour
+     * @param  i The x coordinate of the neighbour
+     * @param  j The y coordinate of the neighbour
+     * @return   Returns true if it is valid and false if not
+     */
     private boolean ValidNeighbour(int i, int j) {
         if (i < 0 || Original.GetWidth() <= i || j < 0 || Original.GetHeight() <= j) return false;
         if (Original.Get(i, j) == 0 || ClosedList.Contains(new Node(i, j))) return false;
         return true;
     }
 
+    /**
+     * Defines a method to calculate the Move Cost between 2 nodes
+     * @param  Current   The current node we are at
+     * @param  Successor The successor node we are checking the cost for
+     * @return           Returns 10 if they are adjacent and 14 if they are diagonal from each other
+     */
     private int CalculateMoveCost(Node Current, Node Successor) {
         Coordinate CurrentCoordinate = Current.GetLocation();
         Coordinate SuccessorCoordinate = Successor.GetLocation();
