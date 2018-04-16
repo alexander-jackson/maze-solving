@@ -1,9 +1,20 @@
 public class Tests {
 
-    static final int Width = 200;
-    static final int Height = 70;
+    static int Width = 50;
+    static int Height = 50;
 
     public static void main(String[] args) {
+        if (args.length > 0) {
+            // There are arguments passed to the program
+            for (int i = 0; i < args.length; i++) {
+                String[] Split = args[i].split("=");
+                switch (Split[0].toLowerCase()) {
+                    case "width": Width = Integer.parseInt(Split[1]); break;
+                    case "height": Height = Integer.parseInt(Split[1]); break;
+                }
+            }
+        }
+
         DepthFirstMazeGenerator DFMG = new DepthFirstMazeGenerator(Width, Height);
         Maze m = DFMG.GenerateMaze();
         m.PrettyDisplay();
